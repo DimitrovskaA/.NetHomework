@@ -9,7 +9,7 @@ class Program
 
 		char checkDigit = CalculateCheckDigit(isbnInput);
 
-		Console.WriteLine("The complete ISBN is: " + isbnInput + checkDigit);
+		Console.WriteLine("The complete ISBN is:    " + isbnInput + checkDigit);
 	}
 
 	static char CalculateCheckDigit(string isbn)
