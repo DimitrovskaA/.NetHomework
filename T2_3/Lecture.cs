@@ -6,7 +6,6 @@
 		public Lecture(string description, string topic) : base(description)
 		{ 
 			Topic = topic;
-			Topic = topic;
 		}
 		public override TrainingLesson Clone()
 		{

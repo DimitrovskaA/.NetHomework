@@ -2,12 +2,10 @@
 {
 	public class Training : TrainingLesson
 	{
-		public string Description { get; set; }
 		TrainingLesson[] trainingLessons;
-		int trainingLessonsCount=0;
+		int trainingLessonsCount = 0;
 		public Training(string description, int numTrainingLessons) : base (description)
 		{
-			Description = description;
 			trainingLessons = new TrainingLesson[numTrainingLessons];
 		}
 		public TrainingLesson[] GetLessons()
