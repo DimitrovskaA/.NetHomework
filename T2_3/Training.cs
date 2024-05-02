@@ -1,70 +1,56 @@
 ﻿namespace Homework_2_3
 {
-	public class Training
+	public class Training : TrainingLesson
 	{
 		public string Description { get; set; }
-		PracticalLesson[] practicalLessons;
-		Lecture[] lectures;
-		int practicalLessonsCount = 0;
-		int lecturesCount = 0;
-		public Training(string description, int numPracticalLessons, int numLectures) 
+		TrainingLesson[] trainingLessons;
+		int trainingLessonsCount=0;
+		public Training(string description, int numTrainingLessons) : base (description)
 		{
 			Description = description;
-			practicalLessons = new PracticalLesson[numPracticalLessons];
-			lectures = new Lecture[numLectures];
-			//practicalLessonsCount = 0;
-			//lecturesCount = 0;
+			trainingLessons = new TrainingLesson[numTrainingLessons];
 		}
-		public void Add(Lecture lecture)
+		public TrainingLesson[] GetLessons()
 		{
-			if (lecturesCount<lectures.Length)
-			{
-				lectures[lecturesCount] = lecture;
-				lecturesCount++;
-			}
+			return trainingLessons;
 		}
-		public void Add(PracticalLesson practicalLesson)
+		public void Add(TrainingLesson lectureAndLesson)
 		{
-			if (practicalLessonsCount < practicalLessons.Length)
+			if (trainingLessonsCount < trainingLessons.Length)
 			{
-				practicalLessons[practicalLessonsCount] = practicalLesson;
-				practicalLessonsCount++;
+				trainingLessons[trainingLessonsCount] = lectureAndLesson;
+				trainingLessonsCount++;
 			}
 		}
 
-	
 		public bool IsPractical()
-		{ 
-			return lectures.Length==0 && practicalLessons.Length > 0;
+		{
+			foreach (TrainingLesson lesson in trainingLessons)
+			{
+				if (lesson is Lecture)
+					return false;
+			}
+			return true;
 		}
 
-		public Training Clone()
+		public override TrainingLesson Clone()
 		{
-			Training clonedTraining = new Training(this.Description, this.practicalLessons.Length, this.lectures.Length);
+			Training clonedTraining = new Training(this.Description, this.trainingLessonsCount);
 
-			for (int i = 0; i < this.lecturesCount; i++)
+			for (int i = 0; i < this.trainingLessonsCount; i++)
 			{
-				clonedTraining.lectures[i] = this.lectures[i].Clone();
+				clonedTraining.trainingLessons[i] = this.trainingLessons[i].Clone();
 
 			}
-			for (int i = 0; i < this.practicalLessonsCount; i++)
-			{
-				clonedTraining.practicalLessons[i] = this.practicalLessons[i].Clone();
-			}
-
+			
 			return clonedTraining;
 		}
-		public void Print()
+		public override void Print()
 		{
-			Console.WriteLine("Lectures: ");
-			for (int i = 0; i < lectures.Length; i++)
+			Console.WriteLine("Training Lessons: ");
+			for (int i = 0; i < trainingLessons.Length; i++)
 			{
-				Console.WriteLine($"{lectures[i].Description}, {lectures[i].Topic}");
-			}
-			Console.WriteLine("Practical Lessons: ");
-			for (int i = 0; i < practicalLessons.Length; i++)
-			{
-				Console.WriteLine($"{practicalLessons[i].Description}, {practicalLessons[i].SolutionLink}, {practicalLessons[i].TaskLink}");
+				trainingLessons[i].Print();
 			}
 		}
 

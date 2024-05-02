@@ -1,17 +1,20 @@
 ﻿namespace Homework_2_3
 {
-	public class Lecture
+	public class Lecture : TrainingLesson
 	{
-		public string Description { get; set; }
 		public string Topic { get; set; }
-		public Lecture(string description, string topic) 
+		public Lecture(string description, string topic) : base(description)
 		{ 
-			Description = description;
+			Topic = topic;
 			Topic = topic;
 		}
-		public Lecture Clone()
+		public override TrainingLesson Clone()
 		{
 			return new Lecture(this.Description, this.Topic);
 		}
+		public override void Print()
+		{
+            Console.WriteLine($"{Description}, {Topic}");
+        }
 	}
 }
