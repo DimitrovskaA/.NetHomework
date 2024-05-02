@@ -8,21 +8,13 @@
 			int a = int.Parse(Console.ReadLine());
 			int b = int.Parse(Console.ReadLine());
 
-			Console.WriteLine($"Integers in the range from {a} to {b} with exactly two symbols A in their duodecimal representation:");
+			int min = Math.Min(a, b);
+			int max = Math.Max(a, b);
 
-			if (a <= b)
+			Console.WriteLine($"Integers in the range from {a} to {b} with exactly two symbols A in their duodecimal representation:");
+			for (int i = min; i <= max; i++)
 			{
-				for (int i = a; i <= b; i++)
-				{
-					CheckAndPrintIntegersWithTwoAs(i);
-				}
-			}
-			else
-			{
-				for (int i = a; i >= b; i--)
-				{
-					CheckAndPrintIntegersWithTwoAs(i);
-				}
+				CheckAndPrintIntegersWithTwoAs(i);
 			}
 
 			Console.ReadKey();
@@ -40,26 +32,10 @@
 		}
 		static string ConvertToDuodecimal(int number)
 		{
-			/*const string duoSystemSymbols = "0123456789AB";
-			string result = "";
-
-			do
-			{
-				int remainder = number % 12;
-				result = duoSystemSymbols[remainder] + result;
-				number /= 12;
-			} while (number > 0);
-
-			return result;*/
 			const string duoSystemSymbols = "0123456789AB";
 			string result = "";
-
-			/*if (number == 0)
-			{
-				return "0";
-			}*/
-
 			bool isNegative = false;
+
 			if (number < 0)
 			{
 				isNegative = true;
