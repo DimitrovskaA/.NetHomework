@@ -1,11 +1,13 @@
 ﻿namespace Homework_2_3
 {
-	public class Training : TrainingLesson
+	public class Training 
 	{
 		TrainingLesson[] trainingLessons;
 		int trainingLessonsCount = 0;
-		public Training(string description, int numTrainingLessons) : base (description)
+		public string Description { get; set; }
+		public Training(string description, int numTrainingLessons) 
 		{
+			Description = description;
 			trainingLessons = new TrainingLesson[numTrainingLessons];
 		}
 		public TrainingLesson[] GetLessons()
@@ -23,7 +25,7 @@
 
 		public bool IsPractical()
 		{
-			foreach (TrainingLesson lesson in trainingLessons)
+			foreach (var lesson in trainingLessons)
 			{
 				if (lesson is Lecture)
 					return false;
@@ -31,7 +33,7 @@
 			return true;
 		}
 
-		public override TrainingLesson Clone()
+		public Training Clone()
 		{
 			Training clonedTraining = new Training(this.Description, this.trainingLessonsCount);
 
@@ -43,7 +45,7 @@
 			
 			return clonedTraining;
 		}
-		public override void Print()
+		public void Print()
 		{
 			Console.WriteLine("Training Lessons: ");
 			for (int i = 0; i < trainingLessons.Length; i++)

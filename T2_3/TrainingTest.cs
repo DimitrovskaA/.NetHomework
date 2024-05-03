@@ -7,8 +7,8 @@ namespace TrainingTest
 		[TestMethod]
 		public void IsPracticalTest1()
 		{
-			PracticalLesson practicalLesson1 = new PracticalLesson("", "", "");
-			Lecture lecture1 = new Lecture("", "");
+			var practicalLesson1 = new PracticalLesson("", "", "");
+			var lecture1 = new Lecture("", "");
 
 			Training training = new Training("", 2);
 
@@ -20,8 +20,8 @@ namespace TrainingTest
 		[TestMethod]
 		public void IsPracticalTest2()
 		{
-			Lecture lecture1 = new Lecture("", "");
-			Lecture lecture2 = new Lecture("", "");
+			var lecture1 = new Lecture("", "");
+			var lecture2 = new Lecture("", "");
 
 			Training training = new Training("", 2);
 
@@ -33,8 +33,8 @@ namespace TrainingTest
 		[TestMethod]
 		public void IsPracticalTest3()
 		{
-			PracticalLesson practicalLesson1 = new PracticalLesson("", "", "");
-			PracticalLesson practicalLesson2 = new PracticalLesson("", "", "");
+			var practicalLesson1 = new PracticalLesson("", "", "");
+			var practicalLesson2 = new PracticalLesson("", "", "");
 
 			Training training = new Training("", 2);
 
