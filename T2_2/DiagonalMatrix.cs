@@ -2,7 +2,7 @@
 {
 	public class DiagonalMatrix
 	{
-		private int[] diagonalElements;
+		public int[] diagonalElements;
 
 		public int Size { get { return diagonalElements.Length; } }
 
@@ -14,7 +14,8 @@
 			}
 			else
 			{
-				diagonalElements = elements;
+				diagonalElements = new int[elements.Length];
+				Array.Copy(elements, diagonalElements, elements.Length);
 			}
 		}
 		// Indxer

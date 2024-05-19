@@ -7,8 +7,6 @@
 			var matrix1 = new DiagonalMatrix(5, 5, 5);
 			var matrix2 = new DiagonalMatrix(2, 2, 2 ,1);
 
-			//DiagonalMatrix matrix2 = new DiagonalMatrix(0, 0,0);
-
 			DiagonalMatrix sumMatrix = matrix1.Add(matrix2);
 			string diagSize1 = matrix1.ToString();
 			string diagSize2 = matrix2.ToString();
