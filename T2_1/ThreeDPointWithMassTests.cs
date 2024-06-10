@@ -2,7 +2,7 @@ using Homework_2_1;
 namespace ThreeDPointWithMassTests
 {
 	[TestClass]
-	public class ThreeDPointWithMassTests
+	public class UnitTest1
 	{
 		[TestMethod]
 		public void MassValidationPositive()

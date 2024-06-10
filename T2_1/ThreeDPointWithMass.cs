@@ -34,15 +34,7 @@
 			}
 		}
 		
-		public bool IsZero()
-		{
-			if(X==0 && Y==0 && Z== 0)
-			{
-				return true;
-			}
-			else 
-				return false;
-		}
+		public bool IsZero() => X == 0 && Y == 0 && Z == 0;
 
 		public double DistanceTo(ThreeDPointWithMass obj)
 		{
