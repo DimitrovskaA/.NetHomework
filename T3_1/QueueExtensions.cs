@@ -2,16 +2,24 @@
 {
 	public static class QueueExtensions
 	{
-		public static IQueue<T> Tail<T>(this IQueue<T> queue)
+		public static IQueue<T> Tail<T>(this IQueue<T> queue) where T : struct
 		{
 			IQueue<T> tailQueue = new Queue<T>();
+			IQueue<T> tempQueue = new Queue<T>();
 
 			if (!queue.IsEmpty())
 			{
-				queue.Dequeue();
+				queue.Dequeue(); 
 				while (!queue.IsEmpty())
 				{
-					tailQueue.Enqueue(queue.Dequeue());
+					T item = queue.Dequeue();
+					tailQueue.Enqueue(item);
+					tempQueue.Enqueue(item);
+				}
+
+				while (!tempQueue.IsEmpty())
+				{
+					queue.Enqueue(tempQueue.Dequeue());
 				}
 			}
 			return tailQueue;

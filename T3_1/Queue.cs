@@ -1,6 +1,6 @@
 ﻿namespace Homework_Task3_1
 {
-	public class Queue<T> : IQueue<T>
+	public class Queue<T> : IQueue<T> where T: struct
 	{
 		private class Node
 		{
@@ -38,6 +38,7 @@
 			}
 			T dequeuedItem = front.Data;  
 			front = front.Next;  
+
 			if (front == null)  
 			{
 				back = null;  

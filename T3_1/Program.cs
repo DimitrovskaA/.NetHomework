@@ -22,7 +22,10 @@ namespace Homework_Task3_1
 				Console.Write(element + "\t");
 			}
 
-			queue = tempQueue;
+			while (!tempQueue.IsEmpty())
+			{
+				queue.Enqueue(tempQueue.Dequeue());
+			}
 
 			IQueue<int> tailQueue = queue.Tail();
 
