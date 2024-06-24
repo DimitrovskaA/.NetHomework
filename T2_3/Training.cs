@@ -5,6 +5,7 @@
 		TrainingLesson[] trainingLessons;
 		int trainingLessonsCount = 0;
 		public string Description { get; set; }
+
 		public Training(string description, int numTrainingLessons) 
 		{
 			Description = description;
@@ -39,8 +40,7 @@
 
 			for (int i = 0; i < this.trainingLessonsCount; i++)
 			{
-				clonedTraining.trainingLessons[i] = this.trainingLessons[i].Clone();
-
+				clonedTraining.Add(this.trainingLessons[i].Clone());
 			}
 			
 			return clonedTraining;
@@ -48,11 +48,10 @@
 		public void Print()
 		{
 			Console.WriteLine("Training Lessons: ");
-			for (int i = 0; i < trainingLessons.Length; i++)
+			for (int i = 0; i < trainingLessonsCount; i++)
 			{
 				trainingLessons[i].Print();
 			}
 		}
-
 	}
 }
