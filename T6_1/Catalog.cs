@@ -10,10 +10,10 @@ namespace Homewokr_6_1
 
 		public string AddBook(string isbn, Book book) 
 		{
+			if (isbn == null) throw new ArgumentNullException(nameof(isbn), "ISBN cannot be null.");
 			if (!isbnPattern.IsMatch(isbn))
 			{
 				return $"Invalid ISBN format: {isbn}";
-				throw new ArgumentException("Invalid ISBN format.");
 			}
 
 			string normalizedIsbn = NormalizeIsbn(isbn);

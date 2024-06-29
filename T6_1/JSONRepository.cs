@@ -13,7 +13,7 @@ namespace Homework_6_1
 			DirectoryPath = ConfigurationManager.AppSettings["Repositories"] ?? DirectoryPath;
 		}
 
-		public void SaveCatalog(Catalog catalog, string filePath)
+		public void Save(Catalog catalog, string filePath)
 		{
 			if (!Directory.Exists(filePath))
 			{
@@ -37,12 +37,12 @@ namespace Homework_6_1
 					Authors = g.book.Authors.Select(a => new { a.FirstName, a.LastName, a.DateOfBirth })
 				}).ToList();
 
-				var json = System.Text.Json.JsonSerializer.Serialize(books, new JsonSerializerOptions { WriteIndented = true });
+				var json = JsonSerializer.Serialize(books, new JsonSerializerOptions { WriteIndented = true });
 				File.WriteAllText(fullFilePath, json);
 			}
 		}
 
-		public Catalog LoadCatalog(string filePath)
+		public Catalog Load(string filePath)
 		{
 			var catalog = new Catalog();
 			if (!Directory.Exists(filePath))
@@ -54,20 +54,25 @@ namespace Homework_6_1
 
 			foreach (var file in jsonFiles)
 			{
-				var books = System.Text.Json.JsonSerializer.Deserialize<List<dynamic>>(File.ReadAllText(file));
+				var books = JsonSerializer.Deserialize<List<JsonElement>>(File.ReadAllText(file));
 				foreach (var book in books)
 				{
-					var authors = ((JsonElement)book.Authors).EnumerateArray()
-									.Select(a => new Author(
-										a.GetProperty("FirstName").GetString(),
-										a.GetProperty("LastName").GetString(),
-										a.GetProperty("DateOfBirth").GetDateTime()))
-									.ToArray();
+					var authors = book.GetProperty("Authors").EnumerateArray()
+					.Select(a => new Author(
+						a.GetProperty("FirstName").GetString(),
+						a.GetProperty("LastName").GetString(),
+						a.GetProperty("DateOfBirth").GetDateTime()
+					)).ToArray();
 
-					string isbn = book.ISBN;
-					catalog.AddBook(isbn, new Book(book.Title, book.PublicationDate, authors));
-				}
-			}
+					string isbn = book.GetProperty("ISBN").GetString();
+					string title = book.GetProperty("Title").GetString();
+					DateTime? publicationDate = book.GetProperty("PublicationDate").ValueKind == JsonValueKind.Null
+						? (DateTime?)null
+						: book.GetProperty("PublicationDate").GetDateTime();
+
+					catalog.AddBook(isbn, new Book(title, publicationDate, authors));
+			    }
+	     	}
 			return catalog;
 		}
 	}

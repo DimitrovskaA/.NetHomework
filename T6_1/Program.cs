@@ -23,13 +23,13 @@ namespace Homewokr_6_1
 			catalog.AddBook("978-0-45-284232-6", book4);
 
 			var xmlRepo = new XMLRepository();
-			xmlRepo.SaveCatalog(catalog, "catalog.xml");
-			var loadedCatalogFromXml = xmlRepo.LoadCatalog("catalog.xml");
+			xmlRepo.Save(catalog, "catalog.xml");
+			var loadedCatalogFromXml = xmlRepo.Load("catalog.xml");
 			Console.WriteLine("Catalog from XML is identical: " + (catalog.Equals(loadedCatalogFromXml) ? "Yes" : "No"));
 
 			var jsonRepo = new JSONRepository();
-			jsonRepo.SaveCatalog(catalog, "json_directory");
-			var loadedCatalogFromJson = jsonRepo.LoadCatalog("json_directory");
+			jsonRepo.Save(catalog, "json_directory");
+			var loadedCatalogFromJson = jsonRepo.Load("json_directory");
 			Console.WriteLine("Catalog from JSON is identical: " + (catalog.Equals(loadedCatalogFromJson) ? "Yes" : "No"));
 		
 		}

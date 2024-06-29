@@ -2,8 +2,8 @@
 {
 	public interface IRepository<T>
 	{
-		void SaveCatalog(T catalog, string filePath);
-		T LoadCatalog(string filePath);
+		public void  Save(T catalog, string filePath);
+		T Load(string filePath);
 	}
 
 }

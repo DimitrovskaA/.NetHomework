@@ -4,7 +4,7 @@ namespace Homewokr_6_1
 {
 	public class XMLRepository : IRepository<Catalog>
 	{
-		public void SaveCatalog(Catalog catalog, string filePath)
+		public void Save(Catalog catalog, string filePath)
 		{
 			var serializer = new XmlSerializer(typeof(Catalog));
 			using (var writer = new StreamWriter(filePath))
@@ -13,7 +13,7 @@ namespace Homewokr_6_1
 			}
 		}
 
-		public Catalog LoadCatalog(string filePath)
+		public Catalog Load(string filePath)
 		{
 			var serializer = new XmlSerializer(typeof(Catalog));
 			using (var reader = new StreamReader(filePath))
